@@ -42,7 +42,7 @@ class TurnOnDataServersCommand extends Command
             return;
         }
 
-        if (true || now()->between(now()->setTime(7, 20, 0), now()->setTime(23, 59, 59))) {
+        if (now()->between(now()->setTime(7, 20, 0), now()->setTime(23, 59, 59))) {
             $this->info('正在开启Mysql plus cluster...');
             $count = $this->close([
                 'clusters.1' => 'cl-qj2wgid5',
