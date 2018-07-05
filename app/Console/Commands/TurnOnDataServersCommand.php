@@ -61,7 +61,7 @@ class TurnOnDataServersCommand extends Command
                     'clusters.1' => 'cl-ivd75fht'
                 ]);
                 if (!$count) {
-                    cache()->put('ds:on:done', true, now()->addDay()->setTime('7'));
+                    cache()->put('ds:on:done', true, now()->addDay()->setTime(7, 10));
                 }
             }
         } else {
