@@ -46,7 +46,7 @@ class TurnOnDataServersCommand extends Command
         $end = now()->setTime(23, 0, 0);
         if (now()->between($start, $end)) {
             $this->info('正在开启Mysql plus cluster...');
-            $count = $this->close([
+            $count = $this->open([
                 'clusters.1' => 'cl-qj2wgid5',
                 'clusters.2' => 'cl-3lbo6w7k',
                 'clusters.3' => 'cl-u1cnzupi',
@@ -59,11 +59,11 @@ class TurnOnDataServersCommand extends Command
 
             if (!$count) {
                 $this->info('正在开启Kafka cluster...');
-                $count = $this->close([
+                $count = $this->open([
                     'clusters.1' => 'cl-ivd75fht'
                 ]);
                 if (!$count) {
-                    cache()->put('ds:on:done', true, now()->addDay()->setTime(7, 10));
+                    cache()->put('ds:on:done', true, now()->addDay()->setTime(6, 10));
                 }
             }
         } else {
@@ -71,7 +71,7 @@ class TurnOnDataServersCommand extends Command
         }
     }
 
-    public function close($clusters)
+    public function open($clusters)
     {
         $count = 0;
 
