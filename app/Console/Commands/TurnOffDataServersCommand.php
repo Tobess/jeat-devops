@@ -42,7 +42,9 @@ class TurnOffDataServersCommand extends Command
         if (cache('ds:off:done', false)) {
             return;
         }
-        if (now()->between(now()->setTime(0, 0, 0), now()->setTime(7, 20, 0))) {
+        $start = now()->setTime(0, 0, 0);
+        $end = now()->setTime(6, 0, 0);
+        if (now()->between($start, $end)) {
             $this->info('正在关闭Mysql plus cluster...');
             $count = $this->close([
                 'clusters.1' => 'cl-qj2wgid5',
