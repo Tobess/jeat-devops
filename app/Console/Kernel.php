@@ -32,6 +32,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('ds:turn-off')
                   ->everyMinute();
+
+        $schedule->command('ds:turn-on:print')
+                  ->everyMinute();
     }
 
     /**
