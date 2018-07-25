@@ -51,8 +51,15 @@ class TurnOnPrintDevicesCommand extends Command
                 'clusters.2' => 'cl-iyqnwwzw',
             ]);
 
-            if (!$count) {
-                cache()->put('ds:on-print:done', true, now()->addDay()->setTime(6, 10));
+            if (!$count && now()->greaterThan(now()->setTime(6, 26, 0))) {
+                $this->info('正在开启Kafka cluster...');
+                $count = $this->open([
+                    'clusters.1' => 'cl-ivd75fht'
+                ]);
+
+                if (!$count) {
+                    cache()->put('ds:on-print:done', true, now()->addDay()->setTime(6, 10));
+                }
             }
         } else {
             $this->info('当前处于停机时段，禁止开机。');
